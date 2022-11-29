@@ -1,6 +1,8 @@
 import { RoutesMain } from './routes';
 import Global from './styles/global';
 
+
+
 function App() {
   return (
     <>

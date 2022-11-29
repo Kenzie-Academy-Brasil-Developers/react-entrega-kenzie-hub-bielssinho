@@ -12,8 +12,9 @@ export const FormLogin = styled.form`
 
     h3{
         text-align: center;
-        font-size: var(--font-title);
+        font-size: 22px;
         font-weight: 700;
+        font-family: 'Roboto';
     }
 
     label{
@@ -39,9 +40,17 @@ export const FormLogin = styled.form`
         cursor: pointer;
     }
 
+    button:hover{
+        transition: 500ms;
+        background-color: var(--color-primary-focus);
+        border:1px solid var(--color-primary-focus);
+    }
+
     span{
         text-align: center;
         color: var(--color-grey-1);
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     a{
@@ -53,5 +62,11 @@ export const FormLogin = styled.form`
         font-weight: 700px;
         color: var(--color-grey-0);
         cursor: pointer;
+    }
+
+    a:hover{
+        transition: 500ms;
+        background-color: var(--color-grey-0);
+        color: var(--color-grey-4);
     }
 `
