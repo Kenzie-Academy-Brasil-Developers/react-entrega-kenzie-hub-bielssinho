@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom'
 import Logo from '../../img/Logo.svg'
+import { ContainerRegister } from '../../styles/container'
+import { FormRegister } from './styles.js'
 
 export const Register = () => {
     return(
-        <>
+        <ContainerRegister>
             <div>
                 <img src={Logo} alt='Kenzie Hub' />
                 <Link to={'/login'}>Voltar</Link>
             </div>
-            <form>
+            <FormRegister>
                 <h3>Crie sua conta</h3>
                 <span>Rapido e grátis, vamos nessa</span>
                 <label htmlFor='name'>Nome</label>
@@ -33,7 +35,7 @@ export const Register = () => {
                     <option value='Sexto Módulo'>Sexto Módulo</option>
                 </select>
                 <button type='submit'>Cadastrar</button>
-            </form>
-        </>
+            </FormRegister>
+        </ContainerRegister>
     )
 }
