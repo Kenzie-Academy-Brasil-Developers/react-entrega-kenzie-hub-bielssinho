@@ -27,6 +27,7 @@ export const FormRegister = styled.form`
         background: var(--color-grey-2);
         border-radius: var(--border-radius);
         padding: 5px;
+        color: var(--color-grey-0);
     }
 
     button{
@@ -42,6 +43,7 @@ export const FormRegister = styled.form`
     span{
         text-align: center;
         color: var(--color-grey-1);
+        font-size: var(--font-headeline);
     }
 
     select{
@@ -50,6 +52,7 @@ export const FormRegister = styled.form`
         background: var(--color-grey-2);
         border-radius: var(--border-radius);
         color: var(--color-grey-1);
+        cursor: pointer;
     }
 
     a{

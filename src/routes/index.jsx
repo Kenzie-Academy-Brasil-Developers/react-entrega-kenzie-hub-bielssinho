@@ -9,7 +9,7 @@ export const RoutesMain = () => {
         <Routes>
             <Route path='/login' index element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
-            <Route path='/dashboard' element={<Dashboard/>}/>
+            <Route path='/dashboard/:name' element={<Dashboard/>}/>
             <Route path='*' element={<DivNotFound>404 NOT FOUND</DivNotFound>}/>
         </Routes>
     )

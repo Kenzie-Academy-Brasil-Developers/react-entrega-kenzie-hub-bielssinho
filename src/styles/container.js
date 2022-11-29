@@ -27,11 +27,12 @@ export const ContainerRegister = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     
 
     div{
         width: 100%;
-        max-width: 450px;
+        max-width: 460px;
         display: flex;
         justify-content: space-between;
         padding: 10px;
