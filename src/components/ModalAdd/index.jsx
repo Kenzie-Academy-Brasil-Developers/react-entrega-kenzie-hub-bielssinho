@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { api } from '../../services/api';
 import { BackgroundModal, BodyModal, HeaderModal } from './modalAdd';
 import { ErrorYup } from '../yupError/yupError.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const ModalAdd = ({ setModal }) => {
@@ -20,13 +22,13 @@ export const ModalAdd = ({ setModal }) => {
     const onSubmit = async (data) => {
         const token = JSON.parse(window.localStorage.getItem('@TOKEN'));
 
-        const response = await api.post('users/techs', data, {
+        await api.post('users/techs', data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
         .then((response) => response)
-        .catch((err) => console.log(err))
+        .catch(() => toast.error('Ops! Algo deu errado'))
     }
 
     const modalRef = useRef(null);
@@ -51,30 +53,44 @@ export const ModalAdd = ({ setModal }) => {
 
     
     return(
-        <BackgroundModal>
-            <form ref={modalRef} onSubmit={handleSubmit(onSubmit)}>
-                <HeaderModal>
-                    <h5>Cadastrar Tecnologia</h5>
-                    <button onClick={() => setModal(false)}>X</button>
-                </HeaderModal>
-                <BodyModal>
-                    <label>
-                        Nome
-                        <input type='text' name='title' placeholder='Nome da tecnologia'{...techs('title')}/>
-                    </label>
-                    {errors.title?.message && <ErrorYup>{errors.title.message}</ErrorYup>}
-                    <label>
-                        Selecionar status
-                        <select name='status' {...techs('status')}>
-                            <option value="Iniciante">Iniciante</option>
-                            <option value="Intermediario">Intermediário</option>
-                            <option value="Avançado">Avançado</option>
-                        </select>
-                    </label>
-                    {errors.status?.message && <ErrorYup>{errors.status.message}</ErrorYup>}
-                    <button type='submit'>Cadastrar Tecnologia</button>
-                </BodyModal>
-            </form>
-        </BackgroundModal>
+        <>
+            <BackgroundModal>
+                <form ref={modalRef} onSubmit={handleSubmit(onSubmit)}>
+                    <HeaderModal>
+                        <h5>Cadastrar Tecnologia</h5>
+                        <button onClick={() => setModal(false)}>X</button>
+                    </HeaderModal>
+                    <BodyModal>
+                        <label>
+                            Nome
+                            <input type='text' name='title' placeholder='Nome da tecnologia'{...techs('title')}/>
+                        </label>
+                        {errors.title?.message && <ErrorYup>{errors.title.message}</ErrorYup>}
+                        <label>
+                            Selecionar status
+                            <select name='status' {...techs('status')}>
+                                <option value="Iniciante">Iniciante</option>
+                                <option value="Intermediario">Intermediário</option>
+                                <option value="Avançado">Avançado</option>
+                            </select>
+                        </label>
+                        {errors.status?.message && <ErrorYup>{errors.status.message}</ErrorYup>}
+                        <button type='submit'>Cadastrar Tecnologia</button>
+                    </BodyModal>
+                </form>
+            </BackgroundModal>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+        </>
     )
 }

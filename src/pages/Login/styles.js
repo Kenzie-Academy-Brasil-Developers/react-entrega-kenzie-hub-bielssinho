@@ -14,7 +14,7 @@ export const FormLogin = styled.form`
         text-align: center;
         font-size: 22px;
         font-weight: 700;
-        font-family: 'Roboto';
+        font-family: var(--font-family);
     }
 
     label{

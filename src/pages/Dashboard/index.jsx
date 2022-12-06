@@ -23,7 +23,7 @@ export const Dashboard = () => {
                 
                 setInfoUser(response.data);
             }catch(err){
-                console.log(err)
+                navigate('*')
             }
         }
 

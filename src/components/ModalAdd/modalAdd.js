@@ -34,14 +34,14 @@ export const HeaderModal = styled.div`
 
     h5{
         font-weight: 700;
-        font-family: 'Roboto';
+        font-family: var(--font-family);
     }
 
     button{
         background-color: transparent;
         border: none;
         color: var(--color-grey-1);
-        font-family: 'Roboto';
+        font-family: var(--font-family);
         font-weight: 700;
         cursor: pointer;
     }
@@ -58,7 +58,7 @@ export const BodyModal = styled.div`
         flex-direction: column;
         gap: 20px;
         font-weight: 600;
-        font-family: 'Roboto';
+        font-family: var(--font-family);
         font-size: var(--font-headeline);
     }
 

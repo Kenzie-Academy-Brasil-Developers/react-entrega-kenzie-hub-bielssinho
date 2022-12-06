@@ -28,6 +28,7 @@ export default createGlobalStyle`
         padding: 0;
         outline:0;
         box-sizing: border-box;
+        font-family: var(--font-family);
     }
 
     body,html{
@@ -40,6 +41,5 @@ export default createGlobalStyle`
         color: var(--color-grey-0);
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
-        font-family: var(--font-family);
     }
 `
