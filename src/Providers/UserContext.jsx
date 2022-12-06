@@ -38,35 +38,10 @@ export const UserProvider = ({ children }) => {
             }
         })
         .catch(() => toast.error('Ops! Algo deu errado'))
-
-    }
-
-    const loginFormSchema = yup.object().shape({
-        email: yup.string().required('E-mail obrigatório').email('E-mail inválido!'),
-        password: yup.string().required('Senha obrigatória')
-    })
-
-    const { register: login, handleSubmit: handleSubmitLogin, formState: { errorsLogin } } = useForm({
-        resolver: yupResolver(loginFormSchema)
-    });
-    
-    const onSubmitLogin = async (data) => {
-
-        await api.post('sessions', data)
-        .then((response) => {
-            
-            if(response.statusText !== 'Bad Request'){
-                window.localStorage.setItem('@TOKEN',JSON.stringify(response.data.token))
-                window.localStorage.setItem('@USERID', JSON.stringify(response.data.user.id))
-
-                navigate(`/dashboard/${response.data.user.name}`);
-            }
-        })
-        .catch(() => toast.error('Ops! Algo deu errado'))
     }
 
     return (
-        <UserContext.Provider value={{ register, handleSubmit, errors, onSubmitRegister, login, handleSubmitLogin, errorsLogin, onSubmitLogin }} >
+        <UserContext.Provider value={{ register, handleSubmit, errors, onSubmitRegister }} >
             { children }
         </UserContext.Provider>
     )
