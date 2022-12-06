@@ -50,7 +50,7 @@ export const StyledInfo = styled.div`
 
     h2{
         font-weight: 700px;
-        font-family: 'Roboto';
+        font-family: var(--font-family);
     }
 
     @media(min-width: 750px){
@@ -114,7 +114,7 @@ export const StyledTec = styled.div`
 
     h4{
         font-weight: 700px;
-        font-family: 'Roboto';
+        font-family: var(--font-family);
     }
 
     div{
@@ -122,7 +122,7 @@ export const StyledTec = styled.div`
         justify-content: space-between;
         gap: 50px;
         font-weight: 400px;
-        font-family: 'Roboto';
+        font-family: var(--font-family);
     }
 
     .delete{

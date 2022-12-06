@@ -1,44 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import * as yup  from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { Link } from 'react-router-dom';
 import Logo from '../../img/Logo.svg';
 import { ContainerRegister } from '../../styles/container';
 import { FormRegister } from './styles.js';
-import { api } from '../../services/api';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ErrorYup } from '../../components/yupError/yupError.js';
+import { useContext } from 'react';
+import { UserContext } from '../../Providers/UserContext';
 
 export const Register = () => {
-    const registerFormSchema = yup.object().shape({
-        name: yup.string().required('Nome obrigatório').min(3, 'O nome deve conter mais de 3 caracteres').max(200, 'O nome deve conter menos de 200 caracteres'),
-        email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-        password: yup.string().required('Senha obrigatória'),
-        bio: yup.string().required('Bio obrigatória'),
-        contact: yup.string().required('Contato obrigatório'),
-        course_module: yup.string().required('Campo obrigatório')
-    })
-    const navigate = useNavigate();
-
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(registerFormSchema)
-    });
-
-    const onSubmit = async (data) => {
-
-        const response = await api.post('users', data)
-        .then((response) => {
-            if(response.statusText === 'Created'){
-                toast.success('Conta criada com sucesso!')
-                setTimeout(() => {
-                    navigate('/login')
-                }, 3500)
-            }
-        })
-        .catch((err) => toast.error('Ops! Algo deu errado'))
-
-    }
+    const { register, handleSubmit, errors, onSubmitRegister} = useContext(UserContext);
     
     return(
         <>
@@ -47,7 +18,7 @@ export const Register = () => {
                 <img src={Logo} alt='Kenzie Hub' />
                 <Link to={'/'}>Voltar</Link>
             </div>
-            <FormRegister onSubmit={handleSubmit(onSubmit)}>
+            <FormRegister onSubmit={handleSubmit(onSubmitRegister)}>
                 <h3>Crie sua conta</h3>
                 <span>Rapido e grátis, vamos nessa</span>
                 <label htmlFor='name'>Nome</label>
@@ -65,11 +36,11 @@ export const Register = () => {
                 {...register('password')}
                 />
                 {errors.password?.message && <ErrorYup>{errors.password.message}</ErrorYup>}
-                <label htmlFor='confirmation'>Confirmar Senha</label>
-                <input type='password' name='confirmation' placeholder='Digite novamente sua senha'
-                {...register('password')}
+                <label htmlFor='confirmPassword'>Confirmar Senha</label>
+                <input type='password' name='confirmPassword' placeholder='Digite novamente sua senha'
+                {...register('confirmPassword')}
                 />
-                {errors.password?.message && <ErrorYup>{errors.name.message}</ErrorYup>}
+                {errors.confirmPassword?.message && <ErrorYup>{errors.confirmPassword.message}</ErrorYup>}
                 <label htmlFor='bio'>Bio</label>
                 <input type='text' name='bio' placeholder='Fale sobre você'
                 {...register('bio')}
@@ -82,6 +53,7 @@ export const Register = () => {
                 {errors.contact?.message && <ErrorYup>{errors.contact.message}</ErrorYup>}
                 <label htmlFor='module'>Selecionar modulo</label>
                 <select name='module' {...register('course_module')}>
+                    <option value=''>Selecionar Módulo</option>
                     <option value='Primeiro Módulo'>Primeiro Módulo</option>
                     <option value='Segundo Módulo'>Segundo Módulo</option>
                     <option value='Terceiro Módulo'>Terceiro Módulo</option>
