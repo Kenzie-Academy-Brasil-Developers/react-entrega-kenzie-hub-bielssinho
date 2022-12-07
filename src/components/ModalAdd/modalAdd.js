@@ -63,7 +63,7 @@ export const BodyModal = styled.div`
     }
 
     input{
-        height: 44px;
+        height: 48px;
         border-radius: var(--border-radius);
         border: 1px solid var(--color-grey-2);
         background-color: var(--color-grey-2);
@@ -72,7 +72,7 @@ export const BodyModal = styled.div`
     }
 
     select{
-        height: 44px;
+        height: 48px;
         border-radius: var(--border-radius);
         border: 1px solid var(--color-grey-2);
         background-color: var(--color-grey-2);
@@ -81,7 +81,7 @@ export const BodyModal = styled.div`
     }
 
     button{
-        height: 44px;
+        height: 48px;
         border-radius: var(--border-radius);
         border: 1px solid var(--color-primary);
         background-color: var(--color-primary);
