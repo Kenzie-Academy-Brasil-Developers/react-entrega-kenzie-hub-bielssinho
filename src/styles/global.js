@@ -20,7 +20,7 @@ export default createGlobalStyle`
 
         --border-radius: 4px;
 
-        --font-family: 'Inter' sans-serif;
+        --font-family: 'Inter';
     }
 
     * {
@@ -28,6 +28,10 @@ export default createGlobalStyle`
         padding: 0;
         outline:0;
         box-sizing: border-box;
+        font-family: var(--font-family);
+    }
+
+    h1, h2, h3, h4, h5, h6, p, span, input, button, label{
         font-family: var(--font-family);
     }
 

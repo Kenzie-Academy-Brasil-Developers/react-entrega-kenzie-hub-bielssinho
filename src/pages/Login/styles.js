@@ -23,7 +23,7 @@ export const FormLogin = styled.form`
     }
 
     input{
-        height: 44px;
+        height: 48px;
         border: 1px solid var(--color-grey-2);
         background: var(--color-grey-2);
         border-radius: var(--border-radius);
@@ -31,7 +31,7 @@ export const FormLogin = styled.form`
     }
 
     button{
-        height: 44px;
+        height: 48px;
         border: 1px solid var(--color-primary);
         background: var(--color-primary);
         border-radius: var(--border-radius);

@@ -9,7 +9,7 @@ export const StyledHeader = styled.header`
 
     div{
         width: 100%;
-        max-width: 1200px;
+        max-width: 780px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -40,7 +40,7 @@ export const StyledInfo = styled.div`
 
     div{
         width: 100%;
-        max-width: 1200px;
+        max-width: 780px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -68,7 +68,7 @@ export const StyledInfo = styled.div`
 
 export const StyledTec = styled.div`
     width: 100%;
-    max-width: 1200px;
+    max-width: 780px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -108,7 +108,7 @@ export const StyledTec = styled.div`
         align-items: center;
         background-color: var(--color-grey-4);
         padding: 10px;
-        height: 70px;
+        height: 49px;
         border-radius: var(--border-radius);
     }
 
