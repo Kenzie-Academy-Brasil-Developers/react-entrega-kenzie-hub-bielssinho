@@ -7,10 +7,29 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ErrorYup } from '../../components/yupError/yupError.js';
 import { useContext } from 'react';
 import { UserContext } from '../../Providers/UserContext';
+import { useForm } from 'react-hook-form';
+import * as yup  from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 export const Register = () => {
-    const { register, handleSubmit, errors, onSubmitRegister} = useContext(UserContext);
+    const { onSubmitRegister } = useContext(UserContext);
     
+    const registerFormSchema = yup.object().shape({
+        name: yup.string().required('Nome obrigatório').min(3, 'O nome deve conter mais de 3 caracteres').max(200, 'O nome deve conter menos de 200 caracteres'),
+        email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+        password: yup.string().required('Senha obrigatória'),
+        confirmPasssword: yup.string().oneOf([yup.ref('password'), null], 'As senhas precisam ser iguais!'),
+        bio: yup.string().required('Bio obrigatória'),
+        contact: yup.string().required('Contato obrigatório'),
+        course_module: yup.string().required('Campo obrigatório')
+    })
+
+    
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(registerFormSchema)
+    });
+
     return(
         <>
         <ContainerRegister>

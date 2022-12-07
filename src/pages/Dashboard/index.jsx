@@ -2,47 +2,23 @@ import Logo from '../../img/Logo.svg';
 import { MdAddBox } from 'react-icons/md';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { StyledHeader, StyledInfo, StyledTec } from './styles.js';
-import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 import { ModalAdd } from '../../components/ModalAdd';
+import { AuthContext } from '../../Providers/AuthContext';
+import { DashboardContext } from '../../Providers/DashboardContext';
 
 
 export const Dashboard = () => {
-    const [infoUser, setInfoUser] = useState([]);
-    const [ modal, setModal ] = useState(false);
-
-    const id = JSON.parse(localStorage.getItem('@USERID'));
+    const { user, loading } = useContext(AuthContext);
+    const { modal, logout, openModal, setModal } = useContext(DashboardContext);
     
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        async function getInfoUser(){
-            try{
-                const response = await api.get(`users/${id}`);
-                
-                setInfoUser(response.data);
-            }catch(err){
-                navigate('*')
-            }
-        }
-
-        getInfoUser();
-    }, [infoUser]);
-
-   
-    const logout = () => {
-        window.localStorage.clear()
-
-        navigate('/');
+    if(loading){
+        return null;
     }
 
-    const openModal = () => {
-        setModal(true);
-    }
-
-    return(
-        <>
+    return user ? 
+    <>
             <StyledHeader>
                 <div>
                     <img src={Logo} alt="Kenzie Hub" />
@@ -51,8 +27,8 @@ export const Dashboard = () => {
             </StyledHeader>
             <StyledInfo>
                 <div>
-                    <h2>Olá, {infoUser.name}</h2>
-                    <span>{infoUser.course_module}</span>
+                    <h2>Olá, {user.name}</h2>
+                    <span>{user.course_module}</span>
                 </div>
             </StyledInfo>
             <StyledTec>
@@ -62,7 +38,7 @@ export const Dashboard = () => {
                 </div>
                 <ul>
                     {
-                        infoUser.techs?.map(tech => {
+                        user.techs?.map(tech => {
                             return(
                                 <li key={tech.id}>
                                     <h4>{tech.title}</h4>
@@ -79,6 +55,7 @@ export const Dashboard = () => {
             {
                 modal && (<ModalAdd setModal={setModal}/>)
             }
-        </>
-    )
+    </>
+    :
+    <Navigate to='/'/>
 }
