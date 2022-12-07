@@ -1,14 +1,14 @@
-import { UserProvider } from './Providers/UserContext';
+import { AuthProvider } from './Providers/AuthContext';
 import { RoutesMain } from './routes';
 import Global from './styles/global';
 
 
 function App() {
   return (
-    <UserProvider>
+    <AuthProvider>
       <Global/>
       <RoutesMain/>
-    </UserProvider>
+    </AuthProvider>
   );
 }
 

@@ -4,7 +4,7 @@ export const FormLogin = styled.form`
     background: var(--color-grey-3);
     padding: 10px;
     width: 95%;
-    max-width: 450px;
+    max-width: 550px;
     border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
