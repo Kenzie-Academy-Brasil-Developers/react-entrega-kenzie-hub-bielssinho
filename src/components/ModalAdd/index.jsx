@@ -20,7 +20,7 @@ export const ModalAdd = ({ setModal }) => {
     });
 
     const onSubmit = async (data) => {
-        const token = JSON.parse(window.localStorage.getItem('@TOKEN'));
+        const token = window.localStorage.getItem('@TOKEN');
 
         await api.post('users/techs', data, {
             headers: {

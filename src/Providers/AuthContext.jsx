@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { api } from '../services/api.js';
 import { toast } from 'react-toastify';
 
@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [ user, setUser ] = useState(null);
     const [ loading, setLoading ] = useState(true);
     const navigate = useNavigate();
-
+    const location = useLocation();
 
     useEffect(() => {
         async function loadUser() {
@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }) => {
             }
 
             try {
+                api.defaults.headers.common.authorization = `Bearer ${token}`;
+
                 const { data } = await api.get('profile', {
                     headers: {
                         authorization: `Bearer ${token}`
@@ -48,8 +50,11 @@ export const AuthProvider = ({ children }) => {
             setUser(userResponse);
             localStorage.setItem('@TOKEN', token);
             localStorage.setItem('@USERID', JSON.stringify(userResponse.id));
+            api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-            navigate(`/dashboard/${response.data.user.name}`);
+            const toNavigate = location.state?.from?.pathname || `/dashboard/${response.data.user.name}`
+
+            navigate(toNavigate, { replace: true });
         } catch (error) {
             toast.error('Ops! Algo deu errado')
         }
