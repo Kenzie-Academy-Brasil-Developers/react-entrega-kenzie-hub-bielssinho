@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { api } from "../services/api";
 import { AuthContext } from "./AuthContext";
 
 export const DashboardContext = createContext({});
@@ -21,8 +23,17 @@ export const DashboardProvider = ({children}) => {
         setModal(true);
     }
 
+    const deleteTech = async (id) => {
+        console.log(id)
+        try {
+            await api.delete(`users/techs/${id}`);
+        } catch (error) {
+            toast.error('Ops! Algo deu errado')
+        }
+    }
+
     return(
-        <DashboardContext.Provider value={ { modal, logout, openModal, setModal }}>
+        <DashboardContext.Provider value={ { modal, logout, openModal, setModal, deleteTech }}>
             {children}
         </DashboardContext.Provider>
     )

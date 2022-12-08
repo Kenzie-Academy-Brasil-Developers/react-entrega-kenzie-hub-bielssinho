@@ -11,7 +11,7 @@ import { DashboardContext } from '../../Providers/DashboardContext';
 
 export const Dashboard = () => {
     const { user, loading } = useContext(AuthContext);
-    const { modal, logout, openModal, setModal } = useContext(DashboardContext);
+    const { modal, logout, openModal, setModal, deleteTech } = useContext(DashboardContext);
     
     if(loading){
         return null;
@@ -40,11 +40,11 @@ export const Dashboard = () => {
                     {
                         user.techs?.map(tech => {
                             return(
-                                <li key={tech.id}>
+                                <li key={tech.id} id={tech.id}>
                                     <h4>{tech.title}</h4>
                                     <div>
                                         <span>{tech.status}</span>
-                                        <RiDeleteBinLine className='delete'/>
+                                        <RiDeleteBinLine onClick={() => deleteTech(tech.id)} className='delete'/>
                                     </div>
                                 </li>
                             )
