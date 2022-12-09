@@ -7,6 +7,7 @@ import { Navigate } from 'react-router-dom';
 import { ModalAdd } from '../../components/ModalAdd';
 import { AuthContext } from '../../Providers/AuthContext';
 import { DashboardContext } from '../../Providers/DashboardContext';
+import { CardTech } from '../../components/CardTech';
 
 
 export const Dashboard = () => {
@@ -38,17 +39,7 @@ export const Dashboard = () => {
                 </div>
                 <ul>
                     {
-                        user.techs?.map(tech => {
-                            return(
-                                <li key={tech.id} id={tech.id}>
-                                    <h4>{tech.title}</h4>
-                                    <div>
-                                        <span>{tech.status}</span>
-                                        <RiDeleteBinLine onClick={() => deleteTech(tech.id)} className='delete'/>
-                                    </div>
-                                </li>
-                            )
-                        })
+                        user.techs?.map(tech => <CardTech tech={tech} />)
                     }
                 </ul>
             </StyledTec>

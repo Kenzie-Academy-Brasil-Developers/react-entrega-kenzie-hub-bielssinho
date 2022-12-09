@@ -24,7 +24,6 @@ export const DashboardProvider = ({children}) => {
     }
 
     const deleteTech = async (id) => {
-        console.log(id)
         try {
             await api.delete(`users/techs/${id}`);
         } catch (error) {
