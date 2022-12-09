@@ -29,6 +29,7 @@ export const ModalAdd = ({ setModal }) => {
         })
         .then((response) => response)
         .catch(() => toast.error('Ops! Algo deu errado'))
+        .finally(setModal(false))
     }
 
     const modalRef = useRef(null);
