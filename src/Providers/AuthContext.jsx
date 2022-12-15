@@ -30,9 +30,10 @@ export const AuthProvider = ({ children }) => {
                 });
 
                 setUser(data)
-
+                navigate(`/dashboard/${data.user.name}`);
             } catch (error) {
-                navigate('/');                
+                navigate('/'); 
+                localStorage.clear();               
             }finally{
                 setLoading(false);
             }
