@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
                 setUser(data)
 
             } catch (error) {
-                navigate('*');                
+                navigate('/');                
             }finally{
                 setLoading(false);
             }
